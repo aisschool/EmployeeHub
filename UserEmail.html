@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Access Stored Email</title>
+  <script>
+    function displayStoredEmail() {
+      var email = sessionStorage.getItem('userEmail');
+      if (email) {
+        document.getElementById('storedEmail').textContent = 'Stored Email: ' + email;
+      } else {
+        document.getElementById('storedEmail').textContent = 'No email stored.';
+      }
+    }
+
+    window.onload = displayStoredEmail;
+  </script>
+</head>
+<body>
+  <h1>Stored Email</h1>
+  <p id="storedEmail">Loading email...</p>
+</body>
+</html>
