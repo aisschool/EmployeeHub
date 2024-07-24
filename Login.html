@@ -1,18 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIS | Ahmedabad International School</title>
-    <link rel="icon" href="https://www.aischool.net/favicon.png">
+  <title>Embedding Web App</title>
+  <script>
+    function receiveMessage(event) {
+      if (event.data.type === 'storeEmail') {
+        sessionStorage.setItem('userEmail', event.data.email);
+        console.log('Email stored in session storage:', event.data.email);
+      }
+    }
+
+    window.addEventListener('message', receiveMessage, false);
+
+    function checkEmailStorage() {
+      var email = sessionStorage.getItem('userEmail');
+      document.getElementById('email').textContent = email ? 'Stored Email: ' + email : 'No email stored.';
+    }
+
+    window.onload = checkEmailStorage;
+  </script>
 </head>
 <body>
-  <iframe style=" position: absolute;  top: 0;  left: 0;  bottom: 0;  right: 0;  width: 100%;  height: 100%;" 
-          src="https://script.google.com/a/macros/aischool.net/s/AKfycbyK5JuRyw0AQiGg2GMJZvBYdxKcUx6PTVeSS0mzPBrOygK5Mb-lxtlPXQ6PfNSm6fHHeQ/exec" frameborder="0" scrolling="no"   />
-   
-   <script> 
-       window.onload=window.location.reload();
-    </script>
+  <h1>Embedding Google Apps Script Web App</h1>
+  <iframe src="https://script.google.com/a/macros/aischool.net/s/AKfycbyK5JuRyw0AQiGg2GMJZvBYdxKcUx6PTVeSS0mzPBrOygK5Mb-lxtlPXQ6PfNSm6fHHeQ/exec" width="100%" height="600px" frameborder="0"></iframe>
+  <p id="email">Loading email...</p>
 </body>
 </html>
